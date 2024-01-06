@@ -1,356 +1,330 @@
--- phpMyAdmin SQL Dump
--- version 5.0.4
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 08, 2021 at 03:13 AM
--- Server version: 10.4.16-MariaDB
--- PHP Version: 7.4.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: rposystem
+-- ------------------------------------------------------
+-- Server version	8.0.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `posdb`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_account`
---
-
-CREATE TABLE `tbl_account` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `namedisplay` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_account`
---
-
-INSERT INTO `tbl_account` (`id`, `username`, `namedisplay`, `password`) VALUES
-(1, 'hohuuvinh', 'Ho Huu Vinh', '202cb962ac59075b964b07152d234b70');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_discount`
---
-
-CREATE TABLE `tbl_discount` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `number` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_discount`
---
-
-INSERT INTO `tbl_discount` (`id`, `name`, `number`) VALUES
-(1, 'Sale', 20);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_fee`
---
-
-CREATE TABLE `tbl_fee` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `number` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_fee`
---
-
-INSERT INTO `tbl_fee` (`id`, `name`, `number`) VALUES
-(1, 'VAT', 10),
-(2, 'SER', 20);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_order`
---
-
-CREATE TABLE `tbl_order` (
-  `id` int(11) NOT NULL,
-  `idproduct` int(11) DEFAULT NULL,
-  `idtable` int(11) DEFAULT NULL,
-  `quanlity` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_order`
---
-
-INSERT INTO `tbl_order` (`id`, `idproduct`, `idtable`, `quanlity`, `created_at`) VALUES
-(309, 3, 9, 1, NULL),
-(310, 4, 9, 1, NULL),
-(311, 2, 9, 1, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_payment`
---
-
-CREATE TABLE `tbl_payment` (
-  `id` int(11) NOT NULL,
-  `content` mediumtext DEFAULT NULL,
-  `idadmin` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_payment`
---
-
-INSERT INTO `tbl_payment` (`id`, `content`, `idadmin`, `created_at`) VALUES
-(70, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>2</td>\n							<td>30$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0</td>\n							<td id=\"total\">92$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:30:12'),
-(71, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>4</td>\n							<td>60$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0$</td>\n							<td id=\"total\">125$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:30:31'),
-(72, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>3</td>\n							<td>45$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0</td>\n							<td id=\"total\">108$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:34:51'),
-(73, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>3</td>\n							<td>45$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0$</td>\n							<td id=\"total\">108$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:35:07'),
-(74, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>3</td>\n							<td>45$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0</td>\n							<td id=\"total\">108$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:37:18'),
-(75, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>2</td>\n							<td>30$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0</td>\n							<td id=\"total\">92$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:38:07'),
-(76, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>4</td>\n							<td>60$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0</td>\n							<td id=\"total\">125$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:38:21'),
-(77, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>3</td>\n							<td>87$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0</td>\n							<td id=\"total\">123$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:38:51'),
-(78, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>3</td>\n							<td>45$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0$</td>\n							<td id=\"total\">108$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-07 08:51:18'),
-(79, '\n					<thead>\n						<tr>\n							<th scope=\"col\">#</th>\n							<th scope=\"col\">Name</th>\n							<th scope=\"col\">Qty</th>\n							<th scope=\"col\">Price</th>\n						</tr>\n					</thead>\n					<tbody>\n						\n						<tr>\n							<th scope=\"row\">1</th>\n							<td>Hamburger</td>\n							<td>1</td>\n							<td>25$</td>\n							</tr><tr>\n							<th scope=\"row\">2</th>\n							<td>King Crab</td>\n							<td>1</td>\n							<td>29$</td>\n							</tr><tr>\n							<th scope=\"row\">3</th>\n							<td>Ballantine Finest</td>\n							<td>3</td>\n							<td>45$</td>\n							</tr>\n					</tbody>\n					<thead>\n						<tr>\n							<th scope=\"col\">Fee</th>\n							<th scope=\"col\">Sale</th>\n							<th scope=\"col\">Voucher</th>\n							<th scope=\"col\">Total</th>\n						</tr>\n					</thead>\n					<tbody>					\n						<tr>\n							<td id=\"fee\">30%</td>\n							<td id=\"sale\">20%</td>\n							<td id=\"voucher\">0</td>\n							<td id=\"total\">108$</td>\n						</tr>\n					</tbody>\n				', 1, '2021-03-08 09:13:31');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_product`
---
-
-CREATE TABLE `tbl_product` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `quanlity` int(11) DEFAULT NULL,
-  `type` int(11) DEFAULT 1,
-  `active` int(11) DEFAULT 1,
-  `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_product`
---
-
-INSERT INTO `tbl_product` (`id`, `name`, `price`, `image`, `quanlity`, `type`, `active`, `created_at`) VALUES
-(1, 'King Crab', 29, '1.jpg', NULL, 1, 1, '2021-02-12 11:29:38'),
-(2, 'Hot Dot', 10, '2.jpg', NULL, 1, 1, '2021-02-27 11:30:04'),
-(5, 'Jack Daniel\'s No.7 Whiskey', 25, '4.jpg', NULL, 2, 1, '2021-02-27 16:36:14'),
-(12, 'Ballantine Finest', 15, '021015amruou-ballantine-finest.jpg', NULL, 2, 1, '2021-03-03 09:51:16'),
-(15, 'Hamburger', 25, '021320amthe-ultimate-hamburger.jpg', NULL, 1, 1, '2021-03-07 08:13:20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_table`
---
-
-CREATE TABLE `tbl_table` (
-  `id` int(11) NOT NULL,
-  `number` int(11) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
-  `customer` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_table`
---
-
-INSERT INTO `tbl_table` (`id`, `number`, `type`, `customer`, `status`, `created_at`) VALUES
-(1, 1, 1, 4, 1, '2021-02-27 17:01:29'),
-(2, 2, 1, 4, 1, '2021-02-27 17:01:29'),
-(3, 3, 1, 4, 1, '2021-02-19 17:01:56'),
-(4, 4, 1, 4, 1, '0000-00-00 00:00:00'),
-(5, 5, 1, 4, 1, '0000-00-00 00:00:00'),
-(6, 6, 1, 4, 1, '0000-00-00 00:00:00'),
-(7, 7, 1, 4, 1, '0000-00-00 00:00:00'),
-(8, 8, 1, 4, 1, '0000-00-00 00:00:00'),
-(10, 9, 1, 4, 1, '0000-00-00 00:00:00'),
-(12, 12, 2, 10, 1, '0000-00-00 00:00:00'),
-(13, 13, 2, 10, 1, '0000-00-00 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_theme`
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
 --
-
-CREATE TABLE `tbl_theme` (
-  `id` int(11) NOT NULL,
-  `color1` varchar(7) DEFAULT NULL,
-  `color2` varchar(7) DEFAULT NULL,
-  `color3` varchar(7) DEFAULT NULL,
-  `color4` varchar(7) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_theme`
---
-
-INSERT INTO `tbl_theme` (`id`, `color1`, `color2`, `color3`, `color4`) VALUES
-(1, '#121421', '#1e202c', '#292b37', '#ffffff');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_voucher`
---
-
-CREATE TABLE `tbl_voucher` (
-  `id` int(11) NOT NULL,
-  `code` varchar(255) DEFAULT NULL,
-  `number` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_voucher`
---
-
-INSERT INTO `tbl_voucher` (`id`, `code`, `number`) VALUES
-(1, 'HHVTECHNOLOGY', 10),
-(6, 'HHV', 12),
-(7, 'VVV', 3);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `tbl_account`
---
-ALTER TABLE `tbl_account`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_discount`
---
-ALTER TABLE `tbl_discount`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_fee`
---
-ALTER TABLE `tbl_fee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_order`
---
-ALTER TABLE `tbl_order`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_payment`
---
-ALTER TABLE `tbl_payment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_product`
+-- Table structure for table `day_summery_method`
 --
-ALTER TABLE `tbl_product`
-  ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `tbl_table`
---
-ALTER TABLE `tbl_table`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_theme`
---
-ALTER TABLE `tbl_theme`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_voucher`
---
-ALTER TABLE `tbl_voucher`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_account`
---
-ALTER TABLE `tbl_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `tbl_discount`
---
-ALTER TABLE `tbl_discount`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `tbl_fee`
---
-ALTER TABLE `tbl_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tbl_order`
---
-ALTER TABLE `tbl_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=443;
-
---
--- AUTO_INCREMENT for table `tbl_payment`
---
-ALTER TABLE `tbl_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
-
---
--- AUTO_INCREMENT for table `tbl_product`
---
-ALTER TABLE `tbl_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `tbl_table`
---
-ALTER TABLE `tbl_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `tbl_theme`
---
-ALTER TABLE `tbl_theme`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+DROP TABLE IF EXISTS `day_summery_method`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `day_summery_method` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `card` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cash` varchar(45) NOT NULL,
+  `order_code` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- AUTO_INCREMENT for table `tbl_voucher`
+-- Table structure for table `order_status`
 --
-ALTER TABLE `tbl_voucher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-COMMIT;
 
+DROP TABLE IF EXISTS `order_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_status` (
+  `id` int NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `payment_method`
+--
+
+DROP TABLE IF EXISTS `payment_method`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `payment_method` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_admin`
+--
+
+DROP TABLE IF EXISTS `rpos_admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_admin` (
+  `admin_id` varchar(200) NOT NULL,
+  `admin_name` varchar(200) NOT NULL,
+  `admin_email` varchar(200) NOT NULL,
+  `admin_password` varchar(200) NOT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_bill`
+--
+
+DROP TABLE IF EXISTS `rpos_bill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_bill` (
+  `id` int NOT NULL,
+  `bill_logo` varchar(100) NOT NULL,
+  `bill_title` varchar(100) NOT NULL,
+  `bill_address` text NOT NULL,
+  `bill_mobile` varchar(45) NOT NULL,
+  `discount` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `service_charge` varchar(45) NOT NULL,
+  `bill_footer` varchar(45) NOT NULL,
+  `rpos_status_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_rpos_bill_rpos_status1_idx` (`rpos_status_id`),
+  CONSTRAINT `fk_rpos_bill_rpos_status1` FOREIGN KEY (`rpos_status_id`) REFERENCES `rpos_status` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_catergory`
+--
+
+DROP TABLE IF EXISTS `rpos_catergory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_catergory` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_day`
+--
+
+DROP TABLE IF EXISTS `rpos_day`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_day` (
+  `day_id` int NOT NULL AUTO_INCREMENT,
+  `start_amount` double NOT NULL,
+  `datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`day_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_dining`
+--
+
+DROP TABLE IF EXISTS `rpos_dining`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_dining` (
+  `dining_code` int NOT NULL,
+  `order_code` int NOT NULL,
+  `rpos_status_id` int NOT NULL,
+  `rpos_table_table_id` int NOT NULL,
+  PRIMARY KEY (`dining_code`),
+  KEY `fk_rpos_dining_rpos_status1_idx` (`rpos_status_id`),
+  KEY `fk_rpos_dining_rpos_table1_idx` (`rpos_table_table_id`),
+  CONSTRAINT `fk_rpos_dining_rpos_status1` FOREIGN KEY (`rpos_status_id`) REFERENCES `rpos_status` (`id`),
+  CONSTRAINT `fk_rpos_dining_rpos_table1` FOREIGN KEY (`rpos_table_table_id`) REFERENCES `rpos_table` (`table_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_orders`
+--
+
+DROP TABLE IF EXISTS `rpos_orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_orders` (
+  `order_id` varchar(200) NOT NULL,
+  `prod_id` varchar(200) NOT NULL,
+  `prod_price` double NOT NULL DEFAULT '0',
+  `prod_qty` int NOT NULL,
+  `order_code` varchar(200) DEFAULT NULL,
+  `created_at` date DEFAULT NULL,
+  `order_status` int NOT NULL,
+  `created_time` time DEFAULT NULL,
+  PRIMARY KEY (`order_id`,`order_status`),
+  KEY `ProductOrder` (`prod_id`),
+  KEY `fk_rpos_orders_order_status1_idx` (`order_status`),
+  CONSTRAINT `fk_rpos_orders_order_status1` FOREIGN KEY (`order_status`) REFERENCES `order_status` (`id`),
+  CONSTRAINT `ProductOrder` FOREIGN KEY (`prod_id`) REFERENCES `rpos_products` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_pass_resets`
+--
+
+DROP TABLE IF EXISTS `rpos_pass_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_pass_resets` (
+  `reset_id` int NOT NULL AUTO_INCREMENT,
+  `reset_code` varchar(200) NOT NULL,
+  `reset_token` varchar(200) NOT NULL,
+  `reset_email` varchar(200) NOT NULL,
+  `reset_status` varchar(200) NOT NULL,
+  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  PRIMARY KEY (`reset_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_payments`
+--
+
+DROP TABLE IF EXISTS `rpos_payments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_payments` (
+  `pay_id` varchar(200) NOT NULL,
+  `pay_code` varchar(200) NOT NULL,
+  `order_code` varchar(200) NOT NULL,
+  `pay_amt` double NOT NULL DEFAULT '0',
+  `created_at` date NOT NULL,
+  `payment_method_id` int NOT NULL,
+  `created_time` time DEFAULT NULL,
+  PRIMARY KEY (`pay_id`),
+  KEY `order` (`order_code`),
+  KEY `fk_rpos_payments_payment_method1_idx` (`payment_method_id`),
+  CONSTRAINT `fk_rpos_payments_payment_method1` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_payments_has_rpos_shift`
+--
+
+DROP TABLE IF EXISTS `rpos_payments_has_rpos_shift`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_payments_has_rpos_shift` (
+  `rpos_payments_pay_id` varchar(200) NOT NULL,
+  `rpos_shift_shift_id` int NOT NULL,
+  PRIMARY KEY (`rpos_payments_pay_id`,`rpos_shift_shift_id`),
+  KEY `fk_rpos_payments_has_rpos_shift_rpos_shift1_idx` (`rpos_shift_shift_id`),
+  KEY `fk_rpos_payments_has_rpos_shift_rpos_payments1_idx` (`rpos_payments_pay_id`),
+  CONSTRAINT `fk_rpos_payments_has_rpos_shift_rpos_payments1` FOREIGN KEY (`rpos_payments_pay_id`) REFERENCES `rpos_payments` (`pay_id`),
+  CONSTRAINT `fk_rpos_payments_has_rpos_shift_rpos_shift1` FOREIGN KEY (`rpos_shift_shift_id`) REFERENCES `rpos_shift` (`shift_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_products`
+--
+
+DROP TABLE IF EXISTS `rpos_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_products` (
+  `prod_id` varchar(200) NOT NULL,
+  `prod_code` varchar(200) NOT NULL,
+  `prod_name` varchar(200) NOT NULL,
+  `prod_img` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `prod_desc` longtext NOT NULL,
+  `prod_price` double NOT NULL DEFAULT '0',
+  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `rpos_catergory_id` int DEFAULT NULL,
+  PRIMARY KEY (`prod_id`),
+  KEY `fk_rpos_products_rpos_catergory1_idx` (`rpos_catergory_id`),
+  CONSTRAINT `fk_rpos_products_rpos_catergory1` FOREIGN KEY (`rpos_catergory_id`) REFERENCES `rpos_catergory` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_shift`
+--
+
+DROP TABLE IF EXISTS `rpos_shift`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_shift` (
+  `shift_id` int NOT NULL AUTO_INCREMENT,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `rpos_staff_staff_id` int NOT NULL,
+  `rpos_status_id` int NOT NULL,
+  PRIMARY KEY (`shift_id`),
+  KEY `fk_rpos_shift_rpos_staff1_idx` (`rpos_staff_staff_id`),
+  KEY `fk_rpos_shift_rpos_status1_idx` (`rpos_status_id`),
+  CONSTRAINT `fk_rpos_shift_rpos_staff1` FOREIGN KEY (`rpos_staff_staff_id`) REFERENCES `rpos_staff` (`staff_id`),
+  CONSTRAINT `fk_rpos_shift_rpos_status1` FOREIGN KEY (`rpos_status_id`) REFERENCES `rpos_status` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_staff`
+--
+
+DROP TABLE IF EXISTS `rpos_staff`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_staff` (
+  `staff_id` int NOT NULL AUTO_INCREMENT,
+  `staff_name` varchar(200) NOT NULL,
+  `staff_number` varchar(200) NOT NULL,
+  `staff_email` varchar(200) NOT NULL,
+  `staff_password` varchar(200) NOT NULL,
+  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  PRIMARY KEY (`staff_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_status`
+--
+
+DROP TABLE IF EXISTS `rpos_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_status` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rpos_table`
+--
+
+DROP TABLE IF EXISTS `rpos_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rpos_table` (
+  `table_id` int NOT NULL,
+  `table_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`table_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-01-06 20:53:23
